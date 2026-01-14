@@ -44,26 +44,33 @@ const CountdownTimer = () => {
   ];
 
   return (
-    <div className="flex gap-3 sm:gap-4 justify-center">
+    <div className="flex gap-2 sm:gap-4 justify-center">
       {timeUnits.map((unit, index) => (
         <motion.div
           key={unit.label}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
-          className="glass-card p-3 sm:p-4 min-w-[60px] sm:min-w-[80px] text-center hud-border"
+          initial={{ opacity: 0, y: 30, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 0.8 + index * 0.1, duration: 0.5, type: "spring" }}
+          className="relative"
         >
-          <motion.span
-            key={unit.value}
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            className="block text-2xl sm:text-4xl font-display font-bold text-primary neon-text"
-          >
-            {String(unit.value).padStart(2, '0')}
-          </motion.span>
-          <span className="text-xs sm:text-sm text-muted-foreground font-display tracking-wider">
-            {unit.label}
-          </span>
+          <div className="hud-border rounded-lg p-2 sm:p-4 min-w-[55px] sm:min-w-[80px] text-center">
+            <motion.span
+              key={unit.value}
+              initial={{ scale: 1.2, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.2 }}
+              className="block text-xl sm:text-3xl md:text-4xl font-display font-bold text-primary neon-text"
+            >
+              {String(unit.value).padStart(2, '0')}
+            </motion.span>
+            <span className="text-[10px] sm:text-xs text-muted-foreground font-mono tracking-wider">
+              {unit.label}
+            </span>
+          </div>
+          
+          {/* Decorative corner dots */}
+          <div className="absolute -top-1 -left-1 w-2 h-2 bg-primary rounded-full opacity-60" />
+          <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-primary rounded-full opacity-60" />
         </motion.div>
       ))}
     </div>
