@@ -1,34 +1,44 @@
 import { motion } from 'framer-motion';
 
 const KonarkWheel = () => {
-  const spokes = 12;
-  const innerSpokes = 8;
+  const spokes = 8;
 
   return (
-    <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72">
-      {/* Outer rotating ring */}
+    <div className="relative w-52 h-52 sm:w-72 sm:h-72 md:w-80 md:h-80">
+      {/* Outer glow effect */}
+      <div 
+        className="absolute inset-0 rounded-full"
+        style={{
+          background: 'radial-gradient(circle, hsl(190 100% 50% / 0.15) 0%, transparent 70%)',
+          filter: 'blur(20px)',
+        }}
+      />
+
+      {/* Rotating wheel */}
       <motion.div
         className="absolute inset-0"
         animate={{ rotate: 360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
       >
         <svg viewBox="0 0 200 200" className="w-full h-full">
           <defs>
-            <linearGradient id="wheelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(190, 100%, 50%)" />
-              <stop offset="50%" stopColor="hsl(210, 100%, 60%)" />
-              <stop offset="100%" stopColor="hsl(190, 100%, 50%)" />
+            <linearGradient id="spokeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="hsl(200, 80%, 45%)" />
+              <stop offset="50%" stopColor="hsl(190, 100%, 55%)" />
+              <stop offset="100%" stopColor="hsl(200, 80%, 45%)" />
             </linearGradient>
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+            <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2" result="coloredBlur" />
               <feMerge>
+                <feMergeNode in="coloredBlur" />
                 <feMergeNode in="coloredBlur" />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
             <filter id="strongGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="5" result="coloredBlur" />
+              <feGaussianBlur stdDeviation="4" result="coloredBlur" />
               <feMerge>
+                <feMergeNode in="coloredBlur" />
                 <feMergeNode in="coloredBlur" />
                 <feMergeNode in="coloredBlur" />
                 <feMergeNode in="SourceGraphic" />
@@ -36,133 +46,104 @@ const KonarkWheel = () => {
             </filter>
           </defs>
           
-          {/* Outer circle */}
+          {/* Main outer circle - thick and prominent */}
           <circle
             cx="100"
             cy="100"
-            r="95"
+            r="92"
             fill="none"
-            stroke="url(#wheelGradient)"
-            strokeWidth="2"
-            filter="url(#glow)"
-            opacity="0.9"
+            stroke="url(#spokeGradient)"
+            strokeWidth="4"
+            filter="url(#strongGlow)"
           />
           
-          {/* Secondary ring */}
-          <circle
-            cx="100"
-            cy="100"
-            r="85"
-            fill="none"
-            stroke="url(#wheelGradient)"
-            strokeWidth="1"
-            strokeDasharray="8 4"
-            filter="url(#glow)"
-            opacity="0.5"
-          />
-          
-          {/* Outer spokes */}
+          {/* Thick spokes radiating from center */}
           {Array.from({ length: spokes }).map((_, i) => {
-            const angle = (i * 360) / spokes;
+            const angle = (i * 360) / spokes - 90; // Start from top
             const radian = (angle * Math.PI) / 180;
-            const x2 = 100 + 90 * Math.cos(radian);
-            const y2 = 100 + 90 * Math.sin(radian);
+            const innerRadius = 18;
+            const outerRadius = 88;
+            const x1 = 100 + innerRadius * Math.cos(radian);
+            const y1 = 100 + innerRadius * Math.sin(radian);
+            const x2 = 100 + outerRadius * Math.cos(radian);
+            const y2 = 100 + outerRadius * Math.sin(radian);
             return (
               <line
                 key={i}
-                x1="100"
-                y1="100"
-                x2={x2}
-                y2={y2}
-                stroke="url(#wheelGradient)"
-                strokeWidth="1.5"
-                filter="url(#glow)"
-                opacity="0.8"
-              />
-            );
-          })}
-        </svg>
-      </motion.div>
-
-      {/* Inner rotating ring (opposite direction) */}
-      <motion.div
-        className="absolute inset-8"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-      >
-        <svg viewBox="0 0 200 200" className="w-full h-full">
-          {/* Inner circle */}
-          <circle
-            cx="100"
-            cy="100"
-            r="70"
-            fill="none"
-            stroke="url(#wheelGradient)"
-            strokeWidth="2"
-            filter="url(#glow)"
-            opacity="0.7"
-          />
-          
-          {/* Inner spokes */}
-          {Array.from({ length: innerSpokes }).map((_, i) => {
-            const angle = (i * 360) / innerSpokes;
-            const radian = (angle * Math.PI) / 180;
-            const x1 = 100 + 40 * Math.cos(radian);
-            const y1 = 100 + 40 * Math.sin(radian);
-            const x2 = 100 + 65 * Math.cos(radian);
-            const y2 = 100 + 65 * Math.sin(radian);
-            return (
-              <line
-                key={`inner-${i}`}
                 x1={x1}
                 y1={y1}
                 x2={x2}
                 y2={y2}
-                stroke="url(#wheelGradient)"
-                strokeWidth="2"
-                filter="url(#glow)"
-                opacity="0.6"
+                stroke="url(#spokeGradient)"
+                strokeWidth="4"
+                strokeLinecap="round"
+                filter="url(#glowFilter)"
               />
             );
           })}
-        </svg>
-      </motion.div>
-
-      {/* Static center with text */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <svg viewBox="0 0 200 200" className="absolute w-2/3 h-2/3">
+          
           {/* Inner hub circle */}
           <circle
             cx="100"
             cy="100"
-            r="35"
+            r="18"
             fill="none"
-            stroke="url(#wheelGradient)"
-            strokeWidth="2.5"
-            filter="url(#strongGlow)"
+            stroke="url(#spokeGradient)"
+            strokeWidth="3"
+            filter="url(#glowFilter)"
           />
           
-          {/* Center dot */}
+          {/* Center orb with gradient */}
+          <defs>
+            <radialGradient id="orbGradient" cx="40%" cy="40%">
+              <stop offset="0%" stopColor="hsl(190, 100%, 70%)" />
+              <stop offset="50%" stopColor="hsl(190, 100%, 50%)" />
+              <stop offset="100%" stopColor="hsl(200, 80%, 35%)" />
+            </radialGradient>
+          </defs>
           <circle
             cx="100"
             cy="100"
             r="8"
-            fill="hsl(190, 100%, 55%)"
+            fill="url(#orbGradient)"
             filter="url(#strongGlow)"
           />
+          
+          {/* Highlight on orb */}
+          <circle
+            cx="97"
+            cy="97"
+            r="3"
+            fill="hsl(190, 100%, 85%)"
+            opacity="0.7"
+          />
         </svg>
-        
-        {/* Center text */}
+      </motion.div>
+
+      {/* Static center text - doesn't rotate */}
+      <div className="absolute inset-0 flex items-center justify-center">
         <motion.div
-          className="text-center z-10"
-          initial={{ opacity: 0, scale: 0.8 }}
+          className="text-center"
+          initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
+          transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
         >
-          <span className="block text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary neon-text tracking-wider">
+          <span 
+            className="block text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-[0.2em]"
+            style={{
+              color: 'hsl(195, 80%, 60%)',
+              textShadow: '0 0 10px hsl(190 100% 50% / 0.8), 0 0 20px hsl(190 100% 50% / 0.5), 0 0 30px hsl(190 100% 50% / 0.3)',
+            }}
+          >
             KON
           </span>
-          <span className="block text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary neon-text tracking-wider">
+          <span 
+            className="block text-2xl sm:text-3xl md:text-4xl font-display font-bold tracking-[0.2em]"
+            style={{
+              color: 'hsl(195, 80%, 60%)',
+              textShadow: '0 0 10px hsl(190 100% 50% / 0.8), 0 0 20px hsl(190 100% 50% / 0.5), 0 0 30px hsl(190 100% 50% / 0.3)',
+            }}
+          >
             ARK
           </span>
         </motion.div>

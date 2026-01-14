@@ -12,7 +12,7 @@ const events = [
     zoneNumber: 1,
     gradientFrom: 'from-primary',
     gradientTo: 'to-electric',
-    link: 'https://linktr.ee/',
+    link: 'https://unstop.com/hackathons/sustain-tech-hackathon-konark26-guru-jambheshwar-university-of-science-and-technology-hisar-haryana-1617961',
     floatDelay: 0,
   },
   {
