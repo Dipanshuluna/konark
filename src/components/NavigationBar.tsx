@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import iconnectLogo from '@/assets/iconnect-logo.png';
 
 const navItems = [
   { label: 'HOME', href: '#' },
@@ -25,20 +26,14 @@ const NavigationBar = () => {
             {/* Logo */}
             <motion.a
               href="#"
-              className="flex items-center gap-2 sm:gap-3 group"
+              className="flex items-center group"
               whileHover={{ scale: 1.02 }}
             >
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center group-hover:border-primary/60 transition-colors">
-                <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-              </div>
-              <div>
-                <span className="font-display font-bold text-lg sm:text-xl text-primary neon-text-subtle tracking-wider">
-                  KONARK
-                </span>
-                <span className="font-display font-bold text-lg sm:text-xl text-golden ml-1">
-                  26
-                </span>
-              </div>
+              <img 
+                src={iconnectLogo} 
+                alt="iConnect Society PDUIIC" 
+                className="h-10 sm:h-12 w-auto"
+              />
             </motion.a>
 
             {/* Desktop Navigation */}
