@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Cpu, Eye, Lightbulb, Radar } from 'lucide-react';
+import { Cpu, Eye, Lightbulb, Code2, Mic, Radar } from 'lucide-react';
 import ZoneCard from './ZoneCard';
 
 const events = [
@@ -13,6 +13,7 @@ const events = [
     gradientFrom: 'from-primary',
     gradientTo: 'to-electric',
     link: 'https://unstop.com/hackathons/sustain-tech-hackathon-konark26-guru-jambheshwar-university-of-science-and-technology-hisar-haryana-1617961',
+    rulebookLink: 'https://unstop.com/hackathons/sustain-tech-hackathon-konark26-guru-jambheshwar-university-of-science-and-technology-hisar-haryana-1617961',
     floatDelay: 0,
   },
   {
@@ -24,7 +25,8 @@ const events = [
     zoneNumber: 2,
     gradientFrom: 'from-electric',
     gradientTo: 'to-magenta',
-    link: 'https://linktr.ee/',
+    link: 'https://unstop.com/competitions/visionathon-konark-2026-guru-jambheshwar-university-of-science-and-technology-hisar-haryana-1617986',
+    rulebookLink: 'https://drive.google.com/drive/folders/1d-jEhnqwtxxMDg6kD0V_QKjxZhMDkWdC?usp=sharing',
     floatDelay: 1,
   },
   {
@@ -36,8 +38,33 @@ const events = [
     zoneNumber: 3,
     gradientFrom: 'from-golden',
     gradientTo: 'to-coral',
-    link: 'https://linktr.ee/',
+    link: 'https://unstop.com/p/ideathon-konark-2026-guru-jambheshwar-university-of-science-and-technology-hisar-haryana-1617990',
+    rulebookLink: 'https://drive.google.com/drive/folders/1XcPZ-bJInGX6SHtGh6_Ru9Ut3ygajVIO?usp=drive_link',
     floatDelay: 2,
+  },
+  {
+    title: 'CROWN FOR CODE',
+    tagline: 'Code Your Way to Victory',
+    registerBy: 'Jan 26, 2026',
+    finalDate: 'Feb 17, 2026',
+    icon: Code2,
+    zoneNumber: 4,
+    gradientFrom: 'from-magenta',
+    gradientTo: 'to-primary',
+    link: 'https://linktr.ee/',
+    floatDelay: 0,
+  },
+  {
+    title: "ELEVATOR'S PITCH",
+    tagline: 'Pitch Your Vision in 60 Seconds',
+    registerBy: 'Jan 26, 2026',
+    finalDate: 'Feb 16, 2026',
+    icon: Mic,
+    zoneNumber: 5,
+    gradientFrom: 'from-coral',
+    gradientTo: 'to-golden',
+    link: 'https://linktr.ee/',
+    floatDelay: 1,
   },
 ];
 
