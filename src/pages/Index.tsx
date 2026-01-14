@@ -5,6 +5,7 @@ import NavigationBar from '@/components/NavigationBar';
 import HeroSection from '@/components/HeroSection';
 import DashboardSection from '@/components/DashboardSection';
 import HUDFooter from '@/components/HUDFooter';
+import CustomCursor from '@/components/CustomCursor';
 
 const Index = () => {
   const [hasEntered, setHasEntered] = useState(false);
@@ -19,6 +20,9 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
+      {/* Custom Cursor */}
+      <CustomCursor />
+      
       {/* Constellation Background */}
       <ConstellationBackground />
       
