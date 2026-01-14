@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Instagram, Linkedin, Twitter, Youtube, Globe, ExternalLink, Radio } from 'lucide-react';
+import { Mail, MapPin, Instagram, Linkedin, Twitter, Youtube, Globe, Radio } from 'lucide-react';
 
 const HUDFooter = () => {
   const socialLinks = [
@@ -74,18 +74,6 @@ const HUDFooter = () => {
                 <social.icon className="w-4 h-4" />
               </motion.a>
             ))}
-            
-            <motion.a
-              href="https://linktr.ee/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded border border-golden/40 bg-golden/5 text-golden hover:bg-golden/10 hover:border-golden/60 transition-all duration-300"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="font-mono text-xs tracking-wider">LINKS</span>
-              <ExternalLink className="w-3 h-3" />
-            </motion.a>
           </motion.div>
         </div>
 
