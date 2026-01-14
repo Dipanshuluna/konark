@@ -45,7 +45,7 @@ const events = [
   {
     title: 'CROWN FOR CODE',
     tagline: 'Code Your Way to Victory',
-    registerBy: 'Jan 26, 2026',
+    registerBy: 'Feb 15, 2026',
     finalDate: 'Feb 17, 2026',
     icon: Code2,
     zoneNumber: 4,
@@ -57,7 +57,7 @@ const events = [
   {
     title: "ELEVATOR'S PITCH",
     tagline: 'Pitch Your Vision in 60 Seconds',
-    registerBy: 'Jan 26, 2026',
+    registerBy: 'Feb 15, 2026',
     finalDate: 'Feb 16, 2026',
     icon: Mic,
     zoneNumber: 5,
