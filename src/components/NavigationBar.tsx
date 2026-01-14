@@ -5,7 +5,7 @@ import { useState } from 'react';
 const navItems = [
   { label: 'HOME', href: '#' },
   { label: 'EVENTS', href: '#dashboard' },
-  { label: 'REGISTER', href: 'https://linktr.ee/', external: true },
+  { label: 'REGISTER', href: 'https://unstop.com/college-fests/konark26-guru-jambheshwar-university-of-science-and-technology-hisar-haryana-430685', external: true },
   { label: 'CONTACT', href: 'mailto:iconnectgjust@gmail.com' },
 ];
 
